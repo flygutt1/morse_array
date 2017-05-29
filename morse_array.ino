@@ -45,7 +45,7 @@ void setup()
   Serial.begin(9600);
 };
 
-
+// define beeps
 void beepShort()
 {
   digitalWrite(led,HIGH);
@@ -62,33 +62,36 @@ void beepLong()
   delay(timeMorseSpace);
 }
 
+
+//start program
 void loop()
 {
-  a=Serial.read()-97;
   
-  if(a>=-97 && a<29)
+  a=Serial.read()-97;   //shift input to start from 0
+  
+  if(a>=-97 && a<29)    //prevent bugs
   {
     for(int i=1; i < (morse[a][0]) + 1; i++)
     {
-      if(morse[a][i]==1)
+      if(morse[a][i]==1)    //read long from array
       {
         beepLong();
         Serial.print(morse[a][i]);
       }   
-      else if (morse[a][i]==0)
+      else if (morse[a][i]==0)    //read short from array
       {
         beepShort();
         Serial.print(morse[a][i]);
       }
     }
     
-    if(a==-65)
+    if(a==-65)    //add space
     {
           delay(timeMorseSpaceWord);
           //Serial.println();
     }
     delay(timeMorseSpaceLetter);
-    Serial.println();
+    Serial.println();   //make serial look cleaner
   }
 };
 
