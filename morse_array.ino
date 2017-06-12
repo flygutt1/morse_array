@@ -10,6 +10,7 @@ int timeMorseSpaceWord = timeMorseShort * 7;
 int a;
 int b;
 
+//array with letters
 int morse[26][morseLen] = {
 {2,0,1,0,0,0}, //a 97
 {4,1,0,1,0,0}, //c 99
@@ -63,7 +64,6 @@ void beepLong()
 }
 
 
-//start program
 void loop()
 {
   
@@ -73,19 +73,19 @@ void loop()
   {
     for(int i=1; i < (morse[a][0]) + 1; i++)
     {
-      if(morse[a][i]==1)    //read long from array
+      if(morse[a][i]==1)    //read long beep from array
       {
         beepLong();
         Serial.print(morse[a][i]);
       }   
-      else if (morse[a][i]==0)    //read short from array
+      else if (morse[a][i]==0)    //read short beep from array
       {
         beepShort();
         Serial.print(morse[a][i]);
       }
     }
     
-    if(a==-65)    //add space
+    if(a==-65)    //add letter space
     {
           delay(timeMorseSpaceWord);
           //Serial.println();
